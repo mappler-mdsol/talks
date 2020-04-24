@@ -16,8 +16,7 @@ class ExampleClass
 
   def side_effect_fun(some_number_counter, number = 0)
     some_number_counter.add_a_number(number)
-    some_number_counter.print_the_total
-    return 'it works!!!!!'
+    return 'it works!!!!!' if some_number_counter.print_the_total
   end
 end
 
