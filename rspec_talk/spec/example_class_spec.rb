@@ -11,5 +11,37 @@ describe 'Example' do
   end
 
   describe '#side_effect_fun' do
+    let(:number_counter) { double('NumberCounter') }
+    let(:addr_number) { 1337 }
+
+    it 'adds a number' do
+      allow(number_counter).to receive(:print_the_total).and_return true
+      expect(number_counter).to receive(:add_a_number).with(addr_number)
+      subject.side_effect_fun(number_counter, addr_number)
+    end
+
+    it 'prints the new total' do
+      allow(number_counter).to receive(:add_a_number)
+      expect(number_counter).to receive(:print_the_total)
+      subject.side_effect_fun(number_counter, addr_number)
+    end
+
+    it 'returns a confirmation message' do
+      allow(number_counter).to receive(:add_a_number)
+      allow(number_counter).to receive(:print_the_total).and_return true
+      expect(subject.side_effect_fun(number_counter, addr_number)).to include('it works!!!!!')
+    end
+  end
+end
+
+describe 'NumberCounter' do
+  describe '#add_a_number' do
+    # xit 'adds the number to the total' do
+    # end
+  end
+
+  describe 'print_the_total' do
+    # xit 'prints the total' do
+    # end
   end
 end
