@@ -19,17 +19,25 @@ describe 'Example' do
       allow(number_counter).to receive(:print_the_total).and_return true
     end
 
-    context 'external calls' do
-      after do
-        subject.side_effect_fun(number_counter, addr_number)
+    context 'no number provided' do
+      it 'returns a message if no number provided' do
+        expect(subject.side_effect_fun(number_counter)).to eq("adding zero is useless!")
       end
+    end
 
-      it 'adds a number' do
-        expect(number_counter).to receive(:add_a_number).with(addr_number)
-      end
-
-      it 'prints the new total' do
-        expect(number_counter).to receive(:print_the_total)
+    context 'with provided number' do
+      context 'external calls' do
+        after do
+          subject.side_effect_fun(number_counter, addr_number)
+        end
+  
+        it 'adds a number' do
+          expect(number_counter).to receive(:add_a_number).with(addr_number)
+        end
+  
+        it 'prints the new total' do
+          expect(number_counter).to receive(:print_the_total)
+        end
       end
     end
 
