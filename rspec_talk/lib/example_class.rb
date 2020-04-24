@@ -19,7 +19,8 @@ class ExampleClass
     return "adding zero is useless!" if number == 0
     
     some_number_counter.add_a_number(number)
-    return 'it works!!!!!' if some_number_counter.print_the_total
+    some_number_counter.print_the_total
+    return 'it works!!!!!'
   end
 end
 
