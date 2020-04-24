@@ -5,9 +5,10 @@ class ExampleClass
 
     # Goes through the given word character by character
     word_to_reverse.chars do |char|
-      # takes the current character, and adds it to the beginning of all the characters we've already reversed
+      # takes the current character, adds it together with all the characters we've already reversed, 
+      # and saves that new word
       new_reversed_string = char + reversed_string
-      # saves the newly created word in place of the old version
+      # saves that new  word in place of the old version
       reversed_string = new_reversed_string
     end
     # returns once all the loops are done 
@@ -15,6 +16,8 @@ class ExampleClass
   end
 
   def side_effect_fun(some_number_counter, number = 0)
+    return "adding zero is useless!" if number == 0
+    
     some_number_counter.add_a_number(number)
     return 'it works!!!!!' if some_number_counter.print_the_total
   end
