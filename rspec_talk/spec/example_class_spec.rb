@@ -14,21 +14,24 @@ describe 'Example' do
     let(:number_counter) { double('NumberCounter') }
     let(:addr_number) { 1337 }
 
-    it 'adds a number' do
+    before do
+      allow(number_counter).to receive(:add_a_number)
       allow(number_counter).to receive(:print_the_total).and_return true
-      expect(number_counter).to receive(:add_a_number).with(addr_number)
+    end
+
+    after do
       subject.side_effect_fun(number_counter, addr_number)
+    end
+
+    it 'adds a number' do
+      expect(number_counter).to receive(:add_a_number).with(addr_number)
     end
 
     it 'prints the new total' do
-      allow(number_counter).to receive(:add_a_number)
       expect(number_counter).to receive(:print_the_total)
-      subject.side_effect_fun(number_counter, addr_number)
     end
 
     it 'returns a confirmation message' do
-      allow(number_counter).to receive(:add_a_number)
-      allow(number_counter).to receive(:print_the_total).and_return true
       expect(subject.side_effect_fun(number_counter, addr_number)).to include('it works!!!!!')
     end
   end
