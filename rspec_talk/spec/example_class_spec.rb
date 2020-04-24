@@ -19,16 +19,18 @@ describe 'Example' do
       allow(number_counter).to receive(:print_the_total).and_return true
     end
 
-    after do
-      subject.side_effect_fun(number_counter, addr_number)
-    end
+    context 'external calls' do
+      after do
+        subject.side_effect_fun(number_counter, addr_number)
+      end
 
-    it 'adds a number' do
-      expect(number_counter).to receive(:add_a_number).with(addr_number)
-    end
+      it 'adds a number' do
+        expect(number_counter).to receive(:add_a_number).with(addr_number)
+      end
 
-    it 'prints the new total' do
-      expect(number_counter).to receive(:print_the_total)
+      it 'prints the new total' do
+        expect(number_counter).to receive(:print_the_total)
+      end
     end
 
     it 'returns a confirmation message' do
